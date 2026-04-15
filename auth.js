@@ -1,58 +1,67 @@
-console.log("auth.js loaded");
+console.log("AUTH LOADED");
 
 const loginScreen = document.getElementById("login-screen");
 const appShell = document.getElementById("app-shell");
-const loginForm = document.getElementById("magic-link-form");
-const loginMessage = document.getElementById("login-message");
+const form = document.getElementById("magic-link-form");
+const message = document.getElementById("login-message");
 
-console.log({ loginScreen, appShell, loginForm, loginMessage });
+function showLogin() {
+  loginScreen.classList.remove("hidden");
+  appShell.classList.add("hidden");
+}
 
-(function () {
-  const authConfig = window.AUTH_CONFIG || {};
-  const supabaseUrl = authConfig.supabaseUrl;
-  const supabaseAnonKey = authConfig.supabaseAnonKey;
+function showApp() {
+  loginScreen.classList.add("hidden");
+  appShell.classList.remove("hidden");
+}
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    console.error("Missing Supabase auth config.");
-    return;
+async function init() {
+  console.log("INIT AUTH");
+
+  const { data, error } = await window.supabase.auth.getSession();
+
+  console.log("SESSION:", data, error);
+
+  if (data.session) {
+    showApp();
+    if (window.startQuizApp) window.startQuizApp();
+  } else {
+    showLogin();
   }
 
-  if (!window.supabase || !window.supabase.createClient) {
-    console.error("Supabase client library not loaded.");
-    return;
-  }
+  window.supabase.auth.onAuthStateChange((event, session) => {
+    console.log("AUTH EVENT:", event);
 
-  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-  window.supabaseClient = supabaseClient;
-
-  async function getSession() {
-    const { data, error } = await supabaseClient.auth.getSession();
-    if (error) {
-      console.error("Session fetch error:", error);
-      return null;
+    if (event === "SIGNED_IN") {
+      showApp();
+      if (window.startQuizApp) window.startQuizApp();
     }
-    return data.session;
+
+    if (event === "SIGNED_OUT") {
+      showLogin();
+    }
+  });
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("magic-email").value;
+
+  message.textContent = "Sending...";
+
+  const { error } = await window.supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: window.location.origin,
+    },
+  });
+
+  if (error) {
+    message.textContent = error.message;
+  } else {
+    message.textContent = "Check your email.";
   }
+});
 
-  async function signInWithMagicLink(email) {
-    const { error } = await supabaseClient.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: window.location.origin
-      }
-    });
-
-    if (error) throw error;
-  }
-
-  async function signOut() {
-    const { error } = await supabaseClient.auth.signOut();
-    if (error) throw error;
-  }
-
-  window.authApi = {
-    getSession,
-    signInWithMagicLink,
-    signOut
-  };
-})();
+init();
