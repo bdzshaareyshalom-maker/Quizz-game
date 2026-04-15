@@ -1,5 +1,10 @@
 /*
   App access control
+
+  const SUPABASE_URL = "YOUR_URL";
+const SUPABASE_KEY = "YOUR_ANON_KEY";
+
+window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   ------------------
   Set any category or quiz to false to hide it from the home screen and block it from opening.
   Leave as true to allow it.
