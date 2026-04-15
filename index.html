@@ -3,39 +3,12 @@
 <head>
 <!-- offline-safe: removed external Google Fonts dependency; using local system fonts -->
   <meta charset="UTF-8" />
-<button id="logout-btn" type="button" class="hidden">Log out</button>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learning Through Quizzes | לומדים דרך חידונים</title>
   <link rel="stylesheet" href="./styles.css" />
-  
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./config.js"></script>
-<script src="./auth.js"></script>
-<script src="./app.js"></script>
-</body>
-</html>
 </head>
 <body>
-  <div id="login-screen" class="login-screen hidden">
-  <div class="login-card">
-    <h1>Sign in</h1>
-    <p>Enter your email to receive a secure login link.</p>
-
-    <form id="magic-link-form">
-      <input
-        id="magic-email"
-        type="email"
-        placeholder="you@example.com"
-        required
-        autocomplete="email"
-      />
-      <button type="submit">Send login link</button>
-    </form>
-
-    <p id="login-message" class="login-message"></p>
-  </div>
-</div>
 <div class="app-shell">
   <section id="home-screen" class="screen active">
     <div class="topbar">
@@ -6122,7 +6095,7 @@ const COMPLETION_MESSAGES = {
     review: 'Try again — every day you get better!!'
   },
   he: {
-    high: 'מדהים! אתם אלוף אמיתי!',
+    high: 'מדהים! אתה אלוף אמיתי!',
     mid: 'מקסים תמשיך ככה!!',
     low: 'להמשיך ככה! כל יום יותר טוב',
     review: 'נסה שוב, כל יום יותר טוב!!'
