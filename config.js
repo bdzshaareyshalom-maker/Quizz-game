@@ -7,6 +7,12 @@
   Category keys:
     jewish, math, geography, common
 
+    window.AUTH_CONFIG = {
+  supabaseUrl: "https://moxcvzmpocvetcbigjur.supabase.co",
+  supabaseAnonKey: "sb_publishable_UfJlfEg_0YVyGjIftRm3tw_sYO9joSt"
+};
+  
+
   To block an entire category, set it to false.
   To block a specific quiz, set that quiz id to false.
 */
