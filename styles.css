@@ -659,3 +659,6 @@ button[data-ageslot]:focus-visible {
   margin-top: 12px;
   min-height: 24px;
 }
+.hidden {
+  display: none !important;
+}
