@@ -1,3 +1,12 @@
+console.log("auth.js loaded");
+
+const loginScreen = document.getElementById("login-screen");
+const appShell = document.getElementById("app-shell");
+const loginForm = document.getElementById("magic-link-form");
+const loginMessage = document.getElementById("login-message");
+
+console.log({ loginScreen, appShell, loginForm, loginMessage });
+
 (function () {
   const authConfig = window.AUTH_CONFIG || {};
   const supabaseUrl = authConfig.supabaseUrl;
