@@ -1,3 +1,5 @@
+
+
 const TEXT = {
   he: {
     appTitle: 'לומדים דרך חידונים',
@@ -6183,3 +6185,12 @@ function renderCompletedPlaceholder(node){
   if (node) node.innerHTML = '<div style="height:120px"></div>';
   scheduleCompletionOverlay(0, 10000);
 }
+
+window.startQuizApp = function () {
+  console.log("APP STARTED");
+
+  const root = document.getElementById("quiz-root");
+  root.innerHTML = "<p>Quiz app mounted</p>";
+
+  // later: call your real init here
+};
