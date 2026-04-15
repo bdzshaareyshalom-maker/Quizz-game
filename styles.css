@@ -602,3 +602,60 @@ button[data-ageslot]:focus-visible {
   from{transform:translate3d(0,-8vh,0) rotate(0deg)}
   to{transform:translate3d(var(--dx),110vh,0) rotate(900deg)}
 }
+.hidden {
+  display: none !important;
+}
+
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1020;
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #151b34;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.login-card h1 {
+  margin: 0 0 12px;
+}
+
+.login-card p {
+  margin: 0 0 16px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-card input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0f1530;
+  color: white;
+}
+
+.login-card button,
+#logout-btn {
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.login-message {
+  margin-top: 12px;
+  min-height: 24px;
+}
